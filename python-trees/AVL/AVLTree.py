@@ -105,4 +105,6 @@ def insertNode(rootNode,nodeValue):
 
    return rootNode
 
+
+
 avl = AVLNode(10)
