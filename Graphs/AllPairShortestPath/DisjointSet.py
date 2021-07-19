@@ -24,8 +24,8 @@ class DisjointSet:
          self.parent[yroot] = xroot
          self.rank[xroot] += 1
 
-vertices = ["A","B","C","D","E"]
-disjointSet = DisjointSet(vertices)
-disjointSet.union("B","C") 
-disjointSet.union("B","E")
-print(disjointSet.findSet("E")) 
+# vertices = ["A","B","C","D","E"]
+# disjointSet = DisjointSet(vertices)
+# disjointSet.union("B","C") 
+# disjointSet.union("B","E")
+# print(disjointSet.findSet("E")) 
