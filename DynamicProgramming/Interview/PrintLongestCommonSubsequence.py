@@ -26,5 +26,6 @@ n = len(s2)
 T =[[0 for x in range(n+1)] for x in range(m+1)]
 
 lookupTable(s1,s2,m,n,T)
+print(T)
 subsequence = LCS(s1,s2,m,n,T)
 print(subsequence)
