@@ -8,14 +8,17 @@ def lookupTable(s1,s2,m,n,T):
 
 def LCS(s1,s2,m,n,T):
    if(m == 0 or n == 0):
-      return str()
+      return set([""])
    if(s1[m-1] == s2[n-1]):
-      return LCS(s1,s2,m-1,n-1,T) + s1[m-1]
-   if(T[m-1][n] >= T[m][n-1]):
-      return LCS(s1,s2,m-1,n,T)
-   return LCS(s1,s2,m,n-1,T)
+      return set([x + s1[m-1] for x in LCS(s1,s2,m-1,n-1,T)])
+   else:
+      R = set()
+      if(T[m-1][n] >= T[m][n-1]):
+         R.update(LCS(s1,s2,m-1,n,T))
+      if(T[m-1][n] <= T[m][n-1]):
+         R.update(LCS(s1,s2,m,n-1,T))
+      return R
    
-
 s1 = "ABCBDAB"
 s2 = "BDCABA"
 m = len(s1)
