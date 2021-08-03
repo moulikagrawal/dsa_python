@@ -1,14 +1,48 @@
-def subsetSum(list,sum,index):
-   if(sum == 0):
-      return True
-   elif(index == 0):
-      return False
-   elif(list[index-1] > sum):
-      return subsetSum(list,sum,index-1)
-   else:
-      op1 = subsetSum(list,sum-list[index-1],index-1)
-      op2 = subsetSum(list,sum,index-1)
-      return op1 or op2
+# def subsetSum(list,sum,index):
+#    if(sum == 0):
+#       return True
+#    elif(index == 0):
+#       return False
+#    elif(list[index-1] > sum):
+#       return subsetSum(list,sum,index-1)
+#    else:
+#       op1 = subsetSum(list,sum-list[index-1],index-1)
+#       op2 = subsetSum(list,sum,index-1)
+#       return op1 or op2
 
-list = [3,34,4,12,6,5]
-print(subsetSum(list,30,len(list)))
+def isSubsetSum(set, n, sum):
+	subset =([[False for i in range(sum + 1)]
+			for i in range(n + 1)])
+
+	for i in range(n + 1):
+		subset[i][0] = True
+
+	for i in range(1, sum + 1):
+		subset[0][i]= False
+			
+	for i in range(1, n + 1):
+		for j in range(1, sum + 1):
+			if j<set[i-1]:
+				subset[i][j] = subset[i-1][j]
+			if j>= set[i-1]:
+				subset[i][j] = (subset[i-1][j] or
+								subset[i - 1][j-set[i-1]])
+	
+	for i in range(n + 1):
+	   for j in range(sum + 1):
+	      print (subset[i][j], end =" ")
+	   print()
+
+	return subset[n][sum]
+
+set = [3, 34, 4, 12, 5, 2]
+sum = 9
+n = len(set)
+if (isSubsetSum(set, n, sum) == True):
+   print("Found a subset with given sum")
+else:
+   print("No subset with given sum")
+
+
+# list = [3,34,4,12,6,5]
+# print(isSubsetSum(list,30,len(list)))
